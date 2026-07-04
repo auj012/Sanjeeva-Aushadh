@@ -1,7 +1,7 @@
 name: 🚀 Auto-Generate Agile Workspace
 
 on:
-  workflow_dispatch: # Allows you to trigger this manually via a button on the website
+  workflow_dispatch:
 
 permissions:
   issues: write
@@ -25,22 +25,28 @@ jobs:
           python -c "
           import json
           import subprocess
+          import sys
 
-          with open('tasks.json', 'r') as f:
-              tasks = json.load(f)
+          try:
+              with open('tasks.json', 'r', encoding='utf-8') as f:
+                  tasks = json.load(f)
+          except Exception as e:
+              print(f'❌ ERROR reading tasks.json: {e}')
+              sys.exit(1)
 
           for task in tasks:
-              title = task['title']
-              body = task['body']
-              labels = ','.join(task['labels'])
+              title = task.get('title', 'Untitled Task')
+              body = task.get('body', '')
+              labels_list = task.get('labels', [])
+              labels = ','.join(labels_list) if isinstance(labels_list, list) else str(labels_list)
               
               print(f'Creating issue: {title}')
               
-              cmd = [
-                  'gh', 'issue', 'create',
-                  '--title', title,
-                  '--body', body,
-                  '--label', labels
-              ]
-              subprocess.run(cmd, check=True)
+              cmd = ['gh', 'issue', 'create', '--title', title, '--body', body]
+              if labels:
+                  cmd.extend(['--label', labels])
+                  
+              res = subprocess.run(cmd, capture_output=True, text=True)
+              if res.returncode != 0:
+                  print(f'⚠️ Warning creating issue: {res.stderr}')
           "
