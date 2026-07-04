@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  issues: write
+  contents: write
 
 jobs:
   build-backlog:
@@ -18,35 +18,57 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: 🤖 Parse Backlog and Generate GitHub Issues
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: 📁 Automatically Generate Folder Structure
         run: |
           python -c "
           import json
+          import os
           import subprocess
-          import sys
 
           try:
               with open('tasks.json', 'r', encoding='utf-8') as f:
                   tasks = json.load(f)
           except Exception as e:
               print(f'❌ ERROR reading tasks.json: {e}')
-              sys.exit(1)
+              exit(1)
 
+          # Parse structural pathways from tasks.json
+          created_any = False
           for task in tasks:
-              title = task.get('title', 'Untitled Task')
-              body = task.get('body', '')
-              labels_list = task.get('labels', [])
-              labels = ','.join(labels_list) if isinstance(labels_list, list) else str(labels_list)
+              # Check for file paths or deliverables specified in your JSON
+              filepath = task.get('filepath') or task.get('file_path') or task.get('deliverable')
               
-              print(f'Creating issue: {title}')
-              
-              cmd = ['gh', 'issue', 'create', '--title', title, '--body', body]
-              if labels:
-                  cmd.extend(['--label', labels])
+              if filepath and not isinstance(filepath, list):
+                  # Extract directory path
+                  dirname = os.path.dirname(filepath)
+                  if dirname:
+                      os.makedirs(dirname, exist_ok=True)
+                      print(f'Creating directory structure: {dirname}')
                   
-              res = subprocess.run(cmd, capture_output=True, text=True)
-              if res.returncode != 0:
-                  print(f'⚠️ Warning creating issue: {res.stderr}')
+                  # Create the file with a markdown template if it doesn't exist
+                  if not os.path.exists(filepath):
+                      with open(filepath, 'w', encoding='utf-8') as f:
+                          f.write(f'# {task.get(\"title\", \"Project File\")}\n\nPlaceholder for {task.get(\"description\", \"deliverable\")}.\n')
+                      print(f'Created placeholder file: {filepath}')
+                      created_any = True
+
+          if created_any:
+              # Configure git runner to commit the files back to your repo
+              subprocess.run(['git', 'config', 'user.name', 'github-actions[bot]'])
+              subprocess.run(['git', 'config', 'user.email', '41898282+github-actions[bot]@users.noreply.github.com'])
+              subprocess.run(['git', 'add', '.'])
+              subprocess.run(['git', 'commit', '-m', '🚀 automated creation of project folder structure'])
+              subprocess.run(['git', 'push'])
+              print('✅ Folders and files successfully pushed to repository!')
+          else:
+              print('⚠️ No folder configuration matches found in tasks.json. Creating standard defaults.')
+              # Fallback to create standard data science/AI trilogy folders
+              for folder in ['docs', 'data/raw', 'data/processed', 'notebooks', 'src/models', 'src/pipeline']:
+                  os.makedirs(folder, exist_ok=True)
+                  with open(f'{folder}/.gitkeep', 'w') as f: pass
+              subprocess.run(['git', 'config', 'user.name', 'github-actions[bot]'])
+              subprocess.run(['git', 'config', 'user.email', '41898282+github-actions[bot]@users.noreply.github.com'])
+              subprocess.run(['git', 'add', '.'])
+              subprocess.run(['git', 'commit', '-m', '🚀 automated creation of default trilogy structure'])
+              subprocess.run(['git', 'push'])
           "
