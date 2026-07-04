@@ -7,7 +7,7 @@ permissions:
   contents: write
 
 jobs:
-  build-backlog:
+  build-structure:
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout Repository Code
@@ -18,57 +18,52 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: 📁 Automatically Generate Folder Structure
+      - name: 📁 Automatically Generate Blueprint Folders & Files
         run: |
           python -c "
-          import json
           import os
           import subprocess
 
-          try:
-              with open('tasks.json', 'r', encoding='utf-8') as f:
-                  tasks = json.load(f)
-          except Exception as e:
-              print(f'❌ ERROR reading tasks.json: {e}')
-              exit(1)
+          # Hardcoded list directly matching your exact target folder blueprint map
+          blueprint_files = [
+              'documentation/01_ideation/product_trilogy_vision.md',
+              'documentation/01_ideation/elevator_pitch.md',
+              'documentation/01_ideation/yc_pitch_deck.md',
+              'documentation/02_product_spec/PRD_phase1_divya_drishti.md',
+              'documentation/02_product_spec/PRD_phase2_lakshman_rekha.md',
+              'documentation/02_product_spec/PRD_phase3_sanjeevani.md',
+              'documentation/03_architecture/system_design_v1_divya.md',
+              'documentation/03_architecture/system_design_v2_predictive.md',
+              'documentation/04_project_mgmt/portfolio_roadmap.md',
+              'documentation/06_qa_evals/test_plan_clinical_safety.md',
+              'documentation/06_qa_evals/model_evaluation_report.md',
+              'src/data_generation/synthetic_meds_generator.py',
+              'src/phase1_divya_drishti/descriptive_indicators.py',
+              'src/phase2_lakshman_rekha/clinical_decision_rules.py',
+              'src/phase3_sanjeevani/alternative_router.py',
+              'tests/test_divya_engine.py',
+              'tests/test_safety_rules.py',
+              'CHANGELOG.md'
+          ]
 
-          # Parse structural pathways from tasks.json
-          created_any = False
-          for task in tasks:
-              # Check for file paths or deliverables specified in your JSON
-              filepath = task.get('filepath') or task.get('file_path') or task.get('deliverable')
+          for filepath in blueprint_files:
+              dirname = os.path.dirname(filepath)
+              if dirname:
+                  os.makedirs(dirname, exist_ok=True)
               
-              if filepath and not isinstance(filepath, list):
-                  # Extract directory path
-                  dirname = os.path.dirname(filepath)
-                  if dirname:
-                      os.makedirs(dirname, exist_ok=True)
-                      print(f'Creating directory structure: {dirname}')
-                  
-                  # Create the file with a markdown template if it doesn't exist
-                  if not os.path.exists(filepath):
-                      with open(filepath, 'w', encoding='utf-8') as f:
-                          f.write(f'# {task.get(\"title\", \"Project File\")}\n\nPlaceholder for {task.get(\"description\", \"deliverable\")}.\n')
-                      print(f'Created placeholder file: {filepath}')
-                      created_any = True
+              if not os.path.exists(filepath):
+                  with open(filepath, 'w', encoding='utf-8') as f:
+                      if filepath.endswith('.md'):
+                          f.write(f'# {os.path.basename(filepath).replace(\"_\", \" \").replace(\".md\", \"\")}\n\nPlaceholder for your Sanjeeva-Aushadh document.\n')
+                      else:
+                          f.write('#!/usr/bin/env python\n# -*- coding: utf-8 -*-\n\n\"\"\"\nSanjeeva-Aushadh Component\n\"\"\"\n\ndef main():\n    pass\n\nif __name__ == \"__main__\":\n    main()\n')
+                  print(f'Generated: {filepath}')
 
-          if created_any:
-              # Configure git runner to commit the files back to your repo
-              subprocess.run(['git', 'config', 'user.name', 'github-actions[bot]'])
-              subprocess.run(['git', 'config', 'user.email', '41898282+github-actions[bot]@users.noreply.github.com'])
-              subprocess.run(['git', 'add', '.'])
-              subprocess.run(['git', 'commit', '-m', '🚀 automated creation of project folder structure'])
-              subprocess.run(['git', 'push'])
-              print('✅ Folders and files successfully pushed to repository!')
-          else:
-              print('⚠️ No folder configuration matches found in tasks.json. Creating standard defaults.')
-              # Fallback to create standard data science/AI trilogy folders
-              for folder in ['docs', 'data/raw', 'data/processed', 'notebooks', 'src/models', 'src/pipeline']:
-                  os.makedirs(folder, exist_ok=True)
-                  with open(f'{folder}/.gitkeep', 'w') as f: pass
-              subprocess.run(['git', 'config', 'user.name', 'github-actions[bot]'])
-              subprocess.run(['git', 'config', 'user.email', '41898282+github-actions[bot]@users.noreply.github.com'])
-              subprocess.run(['git', 'add', '.'])
-              subprocess.run(['git', 'commit', '-m', '🚀 automated creation of default trilogy structure'])
-              subprocess.run(['git', 'push'])
+          # Commit changes directly back to your branch
+          subprocess.run(['git', 'config', 'user.name', 'github-actions[bot]'])
+          subprocess.run(['git', 'config', 'user.email', '41898282+github-actions[bot]@users.noreply.github.com'])
+          subprocess.run(['git', 'add', '.'])
+          subprocess.run(['git', 'commit', '-m', '🚀 automated creation of cross-functional trilogy folder structure'])
+          subprocess.run(['git', 'push'])
+          print('✅ All blueprint folders and files pushed successfully!')
           "
