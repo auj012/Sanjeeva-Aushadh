@@ -1,0 +1,62 @@
+[
+  {
+    "title": "[PM] Complete Sanjeeva Aushadh Master Strategy & Pitches",
+    "body": "### Objective\nDocument the clinical problem space and pitch the comprehensive product trilogy (Vision -> Discovery via Divya Drishti -> Gatekeeping via Lakshman Rekha -> Restoration via Sanjeevani).\n\n### Role Hat\nOutbound Product Manager / Founder\n\n### Expected Deliverables\n- Create `documentation/01_ideation/product_trilogy_vision.md`\n- Build high-impact elevator and Y-Combinator style text pitches focusing on the $25B allergy crisis.",
+    "labels": ["role:product-manager", "phase:1-ideation"]
+  },
+  {
+    "title": "[TPM] Complete PRD for Module 1: Divya Drishti Descriptive Engine",
+    "body": "### Objective\nDefine exact data boundary specifications for calculating the global baseline prevalence of allergens in oral medications using openFDA datasets.\n\n### Role Hat\nTechnical Product Manager (TPM)\n\n### Expected Deliverables\n- Finalize `documentation/02_product_spec/PRD_phase1_divya_drishti.md`\n- Define core metric frameworks (Percentages, Modes, Frequency Distributions).",
+    "labels": ["role:tpm", "phase:2-definition"]
+  },
+  {
+    "title": "[DataScientist] Build Divya Drishti Synthetic Data Generator",
+    "body": "### Objective\nWrite a reproducible Python script generating structured patient allergies and text-heavy medication ingredient lists (like Synthroid, Levoxyl) to safely benchmark string-parsing pipelines.\n\n### Role Hat\nData Scientist / Simulated Data Creator\n\n### Expected Deliverables\n- Create `src/data_generation/synthetic_meds_generator.py`\n- Ensure programmatic distribution of allergy aliases (e.g., Lactose monohydrate, Caseinate, Whey).",
+    "labels": ["role:data-scientist", "phase:3-data-sim"]
+  },
+  {
+    "title": "[AI-Engineer] Design System Architecture Diagram for Phase 1 & 2",
+    "body": "### Objective\nMap out the structural technical architecture showing data ingestion layers, text cleaning text tokens, rule match filters, and warning intercept screens.\n\n### Role Hat\nAI Solutions Engineer / Architect\n\n### Expected Deliverables\n- Create `documentation/03_architecture/system_design_v1_descriptive.md` integrating a complete Mermaid.js system flowchart.",
+    "labels": ["role:ai-engineer", "phase:3-architecture"]
+  },
+  {
+    "title": "[Developer] Implement Phase 1: Divya Drishti Analytical Metrics Engine",
+    "body": "### Objective\nWrite production-grade Python scripts that intake the simulated dataset, normalize ingredient text variations (lowercasing, punctuation removal), and extract precise target statistical metrics (Percentages and Modes).\n\n### Role Hat\nSoftware / ML Engineer\n\n### Expected Deliverables\n- Code data engineering files inside the `src/phase1_divya_drishti/descriptive_indicators.py` directory.",
+    "labels": ["role:developer", "phase:5-development"]
+  },
+  {
+    "title": "[QA-Tester] Build PyTest Validation Harness for Baseline Indicators",
+    "body": "### Objective\nWrite automated unit test assertions ensuring that fractional string logic does not miss sub-string allergy elements or output distorted statistical math.\n\n### Role Hat\nQA Automation Tester\n\n### Expected Deliverables\n- Create `tests/test_divya_engine.py` using standard pytest assertions.",
+    "labels": ["role:qa-tester", "phase:6-qa"]
+  },
+  {
+    "title": "[TPM] Complete PRD for Module 2: Lakshman Rekha Safety Gatekeeper",
+    "body": "### Objective\nScope out the active real-time clinical interception logic. Define what triggers a hard 'UNSAFE' block when an input drug contains an excipient matched to a patient's active allergy profile.\n\n### Role Hat\nTechnical PM\n\n### Expected Deliverables\n- Complete `documentation/02_product_spec/PRD_phase2_lakshman_rekha.md` with explicit error handling and pharmacist override logic boundaries.",
+    "labels": ["role:tpm", "phase:2-definition"]
+  },
+  {
+    "title": "[Developer] Implement Phase 2: Lakshman Rekha Intercept Core Rules Engine",
+    "body": "### Objective\nDevelop the core boolean conditional tracking logic that serves as the clinical decision support safety firewall.\n\n### Role Hat\nAI Engineer / Developer\n\n### Expected Deliverables\n- Write code assets inside `src/phase2_lakshman_rekha/clinical_decision_rules.py` mapping input allergy profiles directly against target drug JSON arrays.",
+    "labels": ["role:developer", "phase:5-development"]
+  },
+  {
+    "title": "[QA-Tester] Design Multi-Allergen Boundary Intercept Security Tests",
+    "body": "### Objective\nValidate that the safety wall cannot be bypassed by hidden alias permutations (e.g., checking if a user allergic to dairy is successfully blocked when a drug contains 'Lactoferrin').\n\n### Role Hat\nQA Automation Tester\n\n### Expected Deliverables\n- Code integration unit asserts inside `tests/test_safety_rules.py`.",
+    "labels": ["role:qa-tester", "phase:6-qa"]
+  },
+  {
+    "title": "[TPM/PM] Complete PRD for Module 3: Sanjeevani Recommendation Engine",
+    "body": "### Objective\nScope the algorithmic recommendation system. Define how the application safely processes alternative formulations, maps therapeutic equivalents, and ensures substitution options are 100% allergen-free.\n\n### Role Hat\nTechnical Product Manager\n\n### Expected Deliverables\n- Finalize `documentation/02_product_spec/PRD_phase3_sanjeevani.md` detailing the product substitution workflow layers.",
+    "labels": ["role:tpm", "phase:2-definition"]
+  },
+  {
+    "title": "[AI-Architect] Design Phase 3 Sanjeevani Advanced Graph & Substitution Routing Architecture",
+    "body": "### Objective\nDesign the technical architecture framework for cross-mapping equivalent medications and filtering them through an automated excipient safety layer.\n\n### Role Hat\nAI Solutions Engineer / Architect\n\n### Expected Deliverables\n- Draft advanced architecture spec `documentation/03_architecture/system_design_v2_predictive.md` mapping dynamic data lookup layers.",
+    "labels": ["role:ai-engineer", "phase:3-architecture"]
+  },
+  {
+    "title": "[Developer] Implement Phase 3: Sanjeevani Alternative Router Engine & Interactive Streamlit UI",
+    "body": "### Objective\nDevelop the core recommendation engine algorithm. Package the trilogy into an interactive front-end mockup showcasing the entire live lifecycle flow.\n\n### Role Hat\nAI Engineer / Full-Stack Developer\n\n### Expected Deliverables\n- Create functional application code inside `src/phase3_sanjeevani/alternative_router.py`.\n- Provide a working local visual UI setup snippet for portfolio review sessions.",
+    "labels": ["role:developer", "phase:5-development"]
+  }
+]
