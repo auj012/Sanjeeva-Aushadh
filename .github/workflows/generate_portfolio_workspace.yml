@@ -1,0 +1,46 @@
+name: 🚀 Auto-Generate Agile Workspace
+
+on:
+  workflow_dispatch: # Allows you to trigger this manually via a button on the website
+
+permissions:
+  issues: write
+
+jobs:
+  build-backlog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout Repository Code
+        uses: actions/checkout@v4
+
+      - name: 🛠️ Set up Python Environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 🤖 Parse Backlog and Generate GitHub Issues
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python -c "
+          import json
+          import subprocess
+
+          with open('tasks.json', 'r') as f:
+              tasks = json.load(f)
+
+          for task in tasks:
+              title = task['title']
+              body = task['body']
+              labels = ','.join(task['labels'])
+              
+              print(f'Creating issue: {title}')
+              
+              cmd = [
+                  'gh', 'issue', 'create',
+                  '--title', title,
+                  '--body', body,
+                  '--label', labels
+              ]
+              subprocess.run(cmd, check=True)
+          "
