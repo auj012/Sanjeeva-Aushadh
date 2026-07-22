@@ -1,22 +1,57 @@
-# Sanjeeva-Aushadh
-A Cross-Functional Data Science and AI Trilogy Platform for Patient Allergy Safety (Divya Drishti -> Lakshman Rekha -> Sanjeevani).
+# Sanjeevini Aushad
 
-Folder Structure
-Sanjeeva-Aushadh/                       # Repo Root
-├── 📁 01_ideation/                     # Strategy Master Assets
-├── 📁 02_product_spec/                 # Functional PRD Trilogy
-├── 📁 03_architecture/                 # Tech Architecture Diagrams
-├── 📁 04_project_mgmt/                 # Roadmap & Milestones
-├── 📁 05_qa_evals/                     # Quality & Test Strategy Docs
-├── 📁 phase1_divya_drishti/            # 📦 MODULE 1: Descriptive Analytics Engine
-│   ├── 📄 core_engine.py               # Statistical calculations & parsing logic
-│   ├── 📄 data_generator.py            # Simulated FDA ingredient list engine
-│   └── 📄 test_suite.py                # Unit asserts for data math
-├── 📁 phase2_lakshman_rekha/           # 📦 MODULE 2: Safety Intercept Gatekeeper
-│   ├── 📄 core_engine.py               # Active decision support firewall logic
-│   ├── 📄 data_generator.py            # Patient allergy profile simulator
-│   └── 📄 test_suite.py                # Boundary testing for allergy crossings
-└── 📁 phase3_sanjeevani/               # 📦 MODULE 3: Therapeutic Recommendation Router
-    ├── 📄 core_engine.py               # Alternative excipient routing algorithm & UI setup
-    ├── 📄 data_generator.py            # Equivalent medication dictionary datasets
-    └── 📄 test_suite.py                # End-to-end substitution routing asserts
+**Applied AI clinical decision support for medication allergen safety.**
+
+Sanjeevini Aushad is an applied AI project that addresses a critical gap in medication safety: patients with documented food allergies can still receive medications containing allergenic inactive ingredients because current prescribing and dispensing workflows rarely cross-check excipients against a patient's allergy profile.
+
+Inspired by my own experience navigating this gap, the project explores how publicly available medication data can be transformed into practical clinical decision support that is explainable, auditable, and designed to assist—not replace—clinical decision-making.
+
+---
+
+## Data Sources
+
+This project is built using publicly available healthcare datasets, including:
+
+- **openFDA Drug Label API** – active and inactive ingredient data, updated monthly
+- **DailyMed Structured Product Labels (SPL)**
+- **RxNorm** for medication normalization and standardization
+
+Primary dataset:
+https://open.fda.gov/data/downloads/
+
+---
+
+## Project Vision
+
+The long-term vision consists of three complementary components:
+
+- **Divya Drishti** – Measure and monitor the prevalence of allergens in FDA-approved medications.
+- **Lakshmana Rekha** – Detect potential medication-allergen conflicts before a prescription reaches the patient.
+- **Sanjeevini** – Recommend therapeutically equivalent, allergen-safe alternatives when available.
+
+---
+
+## Current Status
+
+- ✅ Research and problem formulation complete
+- ✅ Product specification and architecture defined
+- ✅ Data acquisition complete
+- 🚧 Data engineering and implementation in progress
+- 🎯 Future work includes EHR integration and clinical validation
+
+---
+
+## Technology Stack
+
+- Python
+- DuckDB
+- Pandas
+- openFDA
+- DailyMed
+- RxNorm
+- Rule-based decision engine
+- Streamlit (planned)
+
+---
+
+*"See the problem. Draw the line. Bring the remedy—in time."*
