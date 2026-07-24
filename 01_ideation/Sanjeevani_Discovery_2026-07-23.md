@@ -141,7 +141,7 @@ Every pain below is taken directly from §4.
 
 ---
 
-## 11. Sanjeevani Intelligence Layers
+## 11. Sanjeevani Intelligence Layers WIP
 
 | Layer                                         | What it does                                  |
 | --------------------------------------------- | --------------------------------------------- |
