@@ -102,6 +102,16 @@ Every pain below is taken directly from §4.
 
 > ✓ **No loop.** The patient acts twice; the system does everything in between — in one pass, not one call at a time.
 
+### Worked example — a dairy-allergic patient prescribed levothyroxine
+
+|                       | Medication                                | What Sanjeevani finds                                             | Outcome                                                     |
+| --------------------- | ----------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------- |
+| **Prescribed**  | **Synthroid** (levothyroxine)       | Contains**lactose monohydrate** — a milk-derived excipient | ⚠️**Flagged** — unsafe for this patient            |
+| **Candidate 1** | **Tirosint** (levothyroxine)        | Minimal excipients, no dairy                                      | ✔ Safe — ✗**not covered** under the patient's plan |
+| **Candidate 2** | **Levoxyl** (levothyroxine, Pfizer) | Lactose-free formulation                                          | ✅**Safe *and* covered → recommended**             |
+
+**Why this example matters:** all three candidates share the same active ingredient, so the clinical decision doesn't change — only the excipients and the coverage do. Candidate 1 shows why safety alone isn't enough: a medication the patient can't afford is not a solution. Sanjeevani's job is to reach Candidate 2 in one pass, instead of the patient discovering each of these facts over three separate weeks.
+
 ---
 
 ## 9. User Stories WIP
