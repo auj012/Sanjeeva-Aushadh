@@ -4,7 +4,6 @@
 **Date:** 2026-07-23
 **Status:** Discovery complete — this document precedes and grounds the PRD.
 
-> *Why this exists:* a PRD specifies a solution. This document establishes the problem, the users, and the job to be done — the evidence the solution has to earn.
 
 ---
 
@@ -72,11 +71,11 @@ To determine whether a medication is safe, patients must coordinate information 
 
 ## 6. Job To Be Done
 
-> When I am prescribed a medication, help me quickly determine whether that medication is compatible with my food allergies, celiac disease, gluten sensitivity, or dietary restrictions — so that I can safely begin treatment without spending days or weeks coordinating information across multiple sources.
+> When I am prescribed a medication, help me quickly get to a medication that is both safe for my food allergies, celiac disease, gluten sensitivity, or dietary restrictions and covered by my insurance — so that I can begin treatment safely without spending days or weeks coordinating information across multiple sources.
 
 ---
 
-## 7. Pain → Capability Mapping
+## 7. Pain → Capability Mapping -WIP
 
 Every pain below is taken directly from §4.
 
@@ -117,7 +116,7 @@ Every pain below is taken directly from §4.
 
 ---
 
-## 10. Product Principles
+## 10. Product Principles WIP
 
 1. Patient safety comes first.
 2. Recommendations must be explainable.
